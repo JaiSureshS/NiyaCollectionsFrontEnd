@@ -13,13 +13,13 @@ const Aside = {
         </a>
       </li>
       <li>
-        <a href="/#/?q=Bangles"
+        <a href="/#/?q=Bangle"
           >Bangles
           <span><i class="fa fa-chevron-right"></i></span>
         </a>
       </li> 
       <li>
-        <a href="/#/?q=EarRings"
+        <a href="/#/?q=EarRing"
           >EarRings
           <span><i class="fa fa-chevron-right"></i></span>
         </a>

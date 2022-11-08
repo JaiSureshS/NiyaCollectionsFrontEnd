@@ -10,7 +10,7 @@ const Header = {
     <button id="aside-open-button">
       &#9776;
     </button>
-    <a href="/#/">Niya Collections</a>
+    <a href="/#/">NiyaCollections</a>
   </div>
   <div class="search">
   <form class="search-form"  id="search-form">
@@ -24,7 +24,7 @@ const Header = {
       ? `<a href="/#/profile">${name}</a>`
       : `<a href="/#/signin">Sign-In</a>`
   }    
-    ${isAdmin ? `<a href="/#/productlist">ManageProducts</a>` : ''}
+    ${isAdmin ? `<a href="/#/productlist">Manage</a>` : ''}
   </div>`;
   },
   after_render: () => {
