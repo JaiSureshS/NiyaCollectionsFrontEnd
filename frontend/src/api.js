@@ -42,6 +42,8 @@ export const getProduct = async (id) => {
     return { error: err.response.data.message || err.message };
   }
 };
+
+
 export const createProduct = async () => {
   try {
     const { token } = getUserInfo();
@@ -192,5 +194,26 @@ export const getSummary = async () => {
     }
   } catch (err) {
     return { error: err.response ? err.response.data.message : err.message };
+  }
+};
+
+export const s3Upload = async (formData) => {
+  try {
+
+   // alert(`file name : ${file.name}`);
+    const response = await axios({
+      url: `${apiUrl}/s3upload/upload`,
+      method: 'POST',
+      headers:  {'Content-Type': 'multipart/form-data'}, 
+      data: formData,
+    });
+
+    if (response.statusText !== 'OK') {
+      throw new Error(response.data.message);
+    }
+    return response.data;
+  } catch (err) {
+    console.log(err);
+    return { error: err.response.data.message || err.message };
   }
 };

@@ -1,13 +1,22 @@
+// import FileSys from 'fs';
+
 import {
   parseRequestUrl,
   showLoading,
   showMessage,
   hideLoading,
 } from '../utils';
+
 import { getProduct, updateProduct, uploadProductImage } from '../api';
+
+const FormData = require('form-data');
+// const http = require('http');       
+// const FileSys = require('fs');
+
 
 const ProductEditScreen = {
   after_render: () => {
+
     const request = parseRequestUrl();
     document
       .getElementById('edit-product-form')
@@ -31,7 +40,7 @@ const ProductEditScreen = {
       .getElementById('image-file')
       .addEventListener('change', async (e) => {
         const file = e.target.files[0];
-        const formData = new FormData();
+         const formData = new FormData();
         formData.append('image', file);
         showLoading();
         const data = await uploadProductImage(formData);
@@ -43,6 +52,8 @@ const ProductEditScreen = {
           document.getElementById('image').value = data.image;
         }
       });
+
+     
   },
   render: async () => {
     const request = parseRequestUrl();
@@ -53,7 +64,7 @@ const ProductEditScreen = {
         <a href="/#/productlist">Back to products</a>
       </div>
       <div class="form-container">
-        <form id="edit-product-form">
+        <form id="edit-product-form" enctype="multipart/form-data">
           <ul class="form-items">
             <li>
               <h1>Edit Product ${product._id.substring(0, 8)}</h1>
@@ -69,7 +80,7 @@ const ProductEditScreen = {
               <input type="text" name="image" value="${
                 product.image
               }" id="image" />
-              <input type="file" name="image-file" id="image-file" />
+              <input type="file" name="image-file" id="image-file" accept="image/*"/>
             </li>
             <li>
               <label for="category">Category</label>
@@ -88,5 +99,7 @@ const ProductEditScreen = {
     </div>
     `;
   },
+
+  
 };
 export default ProductEditScreen;

@@ -2,6 +2,8 @@ import express from 'express';
 import expressAsyncHandler from 'express-async-handler';
 import { isAuth, isAdmin } from '../utils';
 import Product from '../models/productModel';
+import { getObjectSignedUrl,deleteFile } from './s3'
+
 
 const productRouter = express.Router();
 productRouter.get(
@@ -17,6 +19,11 @@ productRouter.get(
         }
       : {};
     const products = await Product.find({ ...searchKeyword });
+    // eslint-disable-next-line no-restricted-syntax
+    for (const product of products) {
+      // eslint-disable-next-line no-await-in-loop
+      product.image = await getObjectSignedUrl(product.image)
+    }
     res.send(products);
   })
 );
@@ -24,6 +31,7 @@ productRouter.get(
   '/:id',
   expressAsyncHandler(async (req, res) => {
     const product = await Product.findById(req.params.id);
+    product.image = await getObjectSignedUrl(product.image)
     res.send(product);
   })
 );
@@ -34,8 +42,8 @@ productRouter.post(
   isAdmin,
   expressAsyncHandler(async (req, res) => {
     const product = new Product({
-      name: 'sample product',
-      category: 'sample category',
+      name: 'Necklace',
+      category: 'Necklace',
       image: '/images/product-1.jpg',
     });
     const createdProduct = await product.save();
@@ -76,6 +84,7 @@ productRouter.delete(
   isAdmin,
   expressAsyncHandler(async (req, res) => {
     const product = await Product.findById(req.params.id);
+    await deleteFile(product.image)
     if (product) {
       const deletedProduct = await product.remove();
       res.send({ message: 'Product Deleted', product: deletedProduct });

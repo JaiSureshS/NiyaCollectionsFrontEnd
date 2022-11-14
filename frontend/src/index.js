@@ -10,7 +10,6 @@ import Header from './components/Header';
 import Aside from './components/Aside';
 
 
-
 const routes = {
     '/': HomeScreen,
   '/product/:id/edit': ProductEditScreen,
