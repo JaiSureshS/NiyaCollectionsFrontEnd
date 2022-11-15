@@ -13,6 +13,7 @@ module.exports = {
   output: {
 	filename: 'mains.js',
 	path: path.resolve(__dirname, 'dist'),
+	clean: true,
   },
   mode: 'production'
 };
