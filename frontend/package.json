@@ -2,6 +2,7 @@
   "name": "frontend",
   "version": "1.0.0",
   "description": "",
+  "main": "index.js",
   "private": true,
   "scripts": {
     "build": "npx webpack",
