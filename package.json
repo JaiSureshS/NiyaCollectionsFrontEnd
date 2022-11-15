@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon --watch backend --exec babel-node backend/server.js",
-    "build": "babel backend -d dist && cd frontend && npm install && npm run build",
+    "build": "babel backend -d dist && cd frontend && npm install -D webpack-cli && npm install && npm run build",
     "serve": "node dist/server.js",
     "heroku-prebuild": "cd frontend && npm install --dev",
     "heroku-postbuild": "rm -rf dist && npm run build && cd frontend && npm install -D webpack-cli && npm install && npx webpack --config webpack.config.js"
