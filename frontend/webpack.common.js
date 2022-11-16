@@ -13,7 +13,7 @@ module.exports = {
   // Where webpack outputs the assets and bundles
   output: {
     path: path.resolve(__dirname, './dist'),
-    filename: 'main.js'  },
+    filename: '[name].bundle.js'  },
 
   // Customize the webpack build process
   plugins: [
