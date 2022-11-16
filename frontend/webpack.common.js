@@ -11,9 +11,7 @@ module.exports = {
   // Where webpack looks to start building the bundle
   entry: path.resolve(__dirname, './src/index.js'),
   // Where webpack outputs the assets and bundles
-  output: {
-    path: path.resolve(__dirname, './dist'),
-    filename: '[name].bundle.js'  },
+  
 
   // Customize the webpack build process
   plugins: [
