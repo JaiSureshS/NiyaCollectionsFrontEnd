@@ -1,12 +1,13 @@
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
-const { merge } = require('webpack-merge')
+// const { merge } = require('webpack-merge')
 
 const path = require("path")
 const paths = require('./paths')
-const common = require('./webpack.common')
+// const common = require('./webpack.common')
 
-module.exports = merge(common, {
+module.exports = {
   mode: 'production',
   devtool: false,
   entry: path.resolve(__dirname, './src/index.js'),
@@ -15,8 +16,16 @@ module.exports = merge(common, {
     publicPath: '/',
     filename: 'js/[name].[contenthash].bundle.js',
   },
+  
   module: {
     rules: [
+		{ test: /\.js$/, use: ['babel-loader'] },
+
+      // Images: Copy image files to build folder
+      { test: /\.(?:ico|gif|png|jpg|jpeg)$/i, type: 'asset/resource' },
+
+      // Fonts and SVGs: Inline files
+      { test: /\.(woff(2)?|eot|ttf|otf|svg|)$/, type: 'asset/inline' },
       {
         test: /\.(sass|scss|css)$/,
         use: [
@@ -36,6 +45,10 @@ module.exports = merge(common, {
     ],
   },
   plugins: [
+	new HtmlWebpackPlugin({
+		template: 'template.html', // template file
+		filename: 'index.html', // output file
+	  }),
     // Extracts CSS into separate files
     new MiniCssExtractPlugin({
       filename: 'styles/[name].[contenthash].css',
@@ -54,4 +67,4 @@ module.exports = merge(common, {
     maxEntrypointSize: 512000,
     maxAssetSize: 512000,
   },
-})
+}
