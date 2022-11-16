@@ -45,7 +45,6 @@ module.exports = {
     ],
   },
   resolve: {
-    root: [path.resolve('./frontend/src')],
     extensions: ['', '.js', '.css']
   },
   plugins: [
