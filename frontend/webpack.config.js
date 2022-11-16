@@ -20,20 +20,21 @@ module.exports = {
 
 
 const path = require("path")
-// const webpack = require('webpack')
+const webpack = require('webpack')
 const HtmlWebPackPlugin = require("html-webpack-plugin")
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+
 
 module.exports = {
   entry: {
-    main: './src/index.js'
+    main: path.resolve(__dirname, './src/index.js'),
   },
   output: {
-    path: path.join(__dirname, 'dist'),
-    publicPath: '/',
-    filename: 'main.js'
+	path: path.resolve(__dirname, './dist'),
+    filename: 'main.bundle.js',
   },
   target: 'web',
-  devtool: 'source-map',
+  devtool: false,
   module: {
     rules: [
       {
@@ -51,20 +52,33 @@ module.exports = {
         ]
       },
       {
-        test: /\.css$/,
-        use: [ 'style-loader', 'css-loader' ]
+        test: /\.(scss|css)$/,
+        use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'],
       },
-      {
-       test: /\.(png|svg|jpg|gif)$/,
-       use: ['file-loader']
-      }
+	  {
+        test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
+        type: 'asset/resource',
+      },
+	  {
+        test: /\.(woff(2)?|eot|ttf|otf|svg|)$/,
+        type: 'asset/inline',
+      },
     ]
   },
-  mode: 'development',
+  mode: 'production',
+  devServer: {
+    historyApiFallback: true,
+    open: true,
+    compress: true,
+    hot: true,
+    port: 8080,
+  },
   plugins: [
     new HtmlWebPackPlugin({
-      template: "./src/html/index.html",
+      template: "./index.html",
       filename: "./index.html"
-    })
+    }),
+	new CleanWebpackPlugin(),
+	new webpack.HotModuleReplacementPlugin(),
   ]
 }
