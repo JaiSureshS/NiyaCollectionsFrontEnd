@@ -23,7 +23,8 @@ mongoose
     console.log(error.reason);
   });
 
-const app = express();
+const app = express(); const DIST_DIR = __dirname;
+const HTML_FILE = path.join(DIST_DIR, 'index.html');
 // const aws = require('aws-sdk');
 
 const storage = multer.memoryStorage()
@@ -50,7 +51,10 @@ app.get('/api/paypal/clientId', (req, res) => {
   res.send({ clientId: config.PAYPAL_CLIENT_ID });
 });
 app.use('/uploads', express.static(path.join(__dirname, '/../uploads')));
-app.use(express.static(path.join(__dirname, '/../frontend')));
+// app.use(express.static(path.join(__dirname, '/../frontend')));
+
+
+app.use(express.static(DIST_DIR))
 
 /* app.get('/sign-s3', (req, res) => {
   console.log("In sign-s3");
@@ -88,7 +92,7 @@ app.use(express.static(path.join(__dirname, '/../frontend')));
 }); */
 
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '/../frontend/index.html'));
+  res.sendFile(path.join(__dirname, 'index.html'));
 });
 // eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {
