@@ -9,7 +9,7 @@ const paths = require('./paths')
 
 module.exports = {
   mode: 'production',
-  devtool: false,
+  devtool: 'eval-source-map',
   entry: path.resolve(__dirname, './src/index.js'),
   output: {
     path: paths.build,
@@ -43,6 +43,10 @@ module.exports = {
         ],
       },
     ],
+  },
+  resolve: {
+    root: [path.resolve('./frontend/src')],
+    extensions: ['', '.js', '.css']
   },
   plugins: [
 	new HtmlWebpackPlugin({
