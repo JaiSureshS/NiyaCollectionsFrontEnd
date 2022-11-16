@@ -19,6 +19,8 @@ module.exports = {
   module: {
     rules: [
 		{ test: /\.js$/, use: ['babel-loader'] },
+		{ test: /src\.js$/, use: ['babel-loader'] },
+
 
       // Images: Copy image files to build folder
       { test: /\.(?:ico|gif|png|jpg|jpeg)$/i, type: 'asset/resource' },
