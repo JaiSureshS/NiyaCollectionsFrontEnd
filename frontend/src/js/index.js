@@ -1,14 +1,14 @@
-import HomeScreen from './screens/HomeScreen';
-import ProductScreen from './screens/ProductScreen';
-import ProductEditScreen from './screens/ProductEditScreen';
-import ProductListScreen from './screens/ProductListScreen';
-import './css/style.css'
+import HomeScreen from '../screens/HomeScreen';
+import ProductScreen from '../screens/ProductScreen';
+import ProductEditScreen from '../screens/ProductEditScreen';
+import ProductListScreen from '../screens/ProductListScreen';
+import '../css/style.css'
 
-import { hideLoading, parseRequestUrl, showLoading } from './utils';
-import Error404Screen from './screens/Error404Screen';
-import SigninScreen from './screens/SigninScreen';
-import Header from './components/Header';
-import Aside from './components/Aside';
+import { hideLoading, parseRequestUrl, showLoading } from '../utils';
+import Error404Screen from '../screens/Error404Screen';
+import SigninScreen from '../screens/SigninScreen';
+import Header from '../components/Header';
+import Aside from '../components/Aside';
 
 
 const routes = {
