@@ -2,14 +2,17 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
+const path = require("path")
 const paths = require('./paths')
+
+
 
 module.exports = {
   // Where webpack looks to start building the bundle
-  entry: [`${paths.src  }/index.js`],
+  entry: path.resolve(__dirname, './src/index.js'),
   // Where webpack outputs the assets and bundles
   output: {
-    path: paths.build,
+    path: path.resolve(__dirname, './dist'),
     filename: 'main.bundle.js',
     publicPath: '/',
   },
