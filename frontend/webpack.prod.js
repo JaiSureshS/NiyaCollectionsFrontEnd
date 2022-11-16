@@ -2,12 +2,14 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 const { merge } = require('webpack-merge')
 
+const path = require("path")
 const paths = require('./paths')
 const common = require('./webpack.common')
 
 module.exports = merge(common, {
   mode: 'production',
   devtool: false,
+  entry: path.resolve(__dirname, './src/index.js'),
   output: {
     path: paths.build,
     publicPath: '/',
