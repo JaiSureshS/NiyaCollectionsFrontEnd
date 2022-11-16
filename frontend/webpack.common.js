@@ -13,9 +13,7 @@ module.exports = {
   // Where webpack outputs the assets and bundles
   output: {
     path: path.resolve(__dirname, './dist'),
-    filename: 'main.bundle.js',
-    publicPath: '/',
-  },
+    filename: 'main.js'  },
 
   // Customize the webpack build process
   plugins: [
@@ -39,7 +37,7 @@ module.exports = {
     // Generates an HTML file from a template
     // Generates deprecation warning: https://github.com/jantimon/html-webpack-plugin/issues/1501
     new HtmlWebpackPlugin({
-      template: 'index.html', // template file
+      template: 'template.html', // template file
       filename: 'index.html', // output file
     }),
   ],

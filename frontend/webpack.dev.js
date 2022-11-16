@@ -65,7 +65,7 @@ module.exports = {
       },
     ]
   },
-  mode: 'production',
+  mode: 'development',
   devServer: {
     historyApiFallback: true,
     open: true,
@@ -75,7 +75,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebPackPlugin({
-      template: "./index.html",
+      template: "./template.html",
       filename: "./index.html"
     }),
 	new CleanWebpackPlugin(),
