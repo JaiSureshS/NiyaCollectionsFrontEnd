@@ -9,7 +9,7 @@ const paths = require('./paths')
 
 module.exports = {
   mode: 'production',
-  devtool: 'eval-source-map',
+  devtool: 'inline-source-map',
   entry: path.resolve(__dirname, './src/index.js'),
   output: {
     path: paths.build,
