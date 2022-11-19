@@ -7,7 +7,7 @@
     "build": "babel backend -d dist && cd frontend && npm install --dev && npm run build",
     "serve": "node dist/server.js",
     "heroku-prebuild": "cd frontend && npm install --dev",
-    "heroku-postbuild": "rm -rf dist && npm run build && cd frontend && webpack -p"
+    "heroku-postbuild": "rm -rf dist && npm run build && cd frontend && npm start"
   },
   "repository": {
     "type": "git",
