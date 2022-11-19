@@ -4,44 +4,52 @@ const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 // const { merge } = require('webpack-merge')
 
 const path = require("path")
-const paths = require('./paths')
+// const paths = require('./paths')
 // const common = require('./webpack.common')
 
 module.exports = {
   mode: 'production',
-  devtool: 'inline-source-map',
-  entry: path.resolve(__dirname, './src/index.js'),
+  devtool: 'source-map',
+  entry: path.resolve(__dirname, 'src/index.js'),
   output: {
-    path: paths.build,
-    filename: '[name].[contenthash].bundle.js',
+    path: path.resolve(__dirname, 'dist'),
+    filename: '[name][contenthash].js',
+    clean: true,
   },
   
   module: {
     rules: [
-		{ test: /\.js$/, use: ['babel-loader'] },
-		{ test: /src\.js$/, use: ['babel-loader'] },
 
+		{
+			test: /\.js$/,
+			exclude: /node_modules/,
+			use: {
+			  loader: 'babel-loader',
+			  options: {
+				presets: ['@babel/preset-env'],
+			  },
+			},
+		  },
+		  {
+			test: /src\.js$/,
+			exclude: /node_modules/,
+			use: {
+			  loader: 'babel-loader',
+			  options: {
+				presets: ['@babel/preset-env'],
+			  },
+			},
+		  },
+		// { test: /src\.js$/, use: ['babel-loader'] },
 
       // Images: Copy image files to build folder
       { test: /\.(?:ico|gif|png|jpg|jpeg)$/i, type: 'asset/resource' },
 
       // Fonts and SVGs: Inline files
       { test: /\.(woff(2)?|eot|ttf|otf|svg|)$/, type: 'asset/inline' },
-      {
-        test: /\.(sass|scss|css)$/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          {
-            loader: 'css-loader',
-            options: {
-              importLoaders: 2,
-              sourceMap: false,
-              modules: false,
-            },
-          },
-          'postcss-loader',
-          'sass-loader',
-        ],
+	  {
+        test: /\.(scss|css)$/,
+        use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'],
       },
     ],
   },

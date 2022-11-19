@@ -2,7 +2,7 @@ import HomeScreen from './screens/HomeScreen';
 import ProductScreen from './screens/ProductScreen';
 import ProductEditScreen from './screens/ProductEditScreen';
 import ProductListScreen from './screens/ProductListScreen';
-import '../style.css'
+import './styles/style.css'
 
 import { hideLoading, parseRequestUrl, showLoading } from './utils';
 import Error404Screen from './screens/Error404Screen';
