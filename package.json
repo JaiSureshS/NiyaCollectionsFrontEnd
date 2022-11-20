@@ -8,7 +8,9 @@
     "start": "cross-env NODE_ENV=production webpack serve --config webpack.prod.js",
     "build": "cross-env NODE_ENV=production webpack --config webpack.prod.js",
     "lint": "eslint 'src/**/*.js' || true",
-    "prettify": "prettier --write 'src/**/*.js'"
+    "prettify": "prettier --write 'src/**/*.js'",
+    "heroku-prebuild": "npm install --dev",
+    "heroku-postbuild": "rm -rf dist && npm run build"
   },
   "author": "",
   "license": "ISC",
