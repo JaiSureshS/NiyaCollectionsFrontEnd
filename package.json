@@ -1,66 +1,46 @@
 {
-  "name": "niya",
+  "name": "frontend",
   "version": "1.0.0",
   "description": "",
+  "main": "index.js",
   "scripts": {
-    "start": "nodemon --watch backend --exec babel-node backend/server.js && cd frontend && npm start",
-    "build": "babel backend -d dist && cd frontend && npm install --dev && npm run build",
-    "serve": "node dist/server.js",
-    "heroku-prebuild": "cd frontend && npm install --dev",
-    "heroku-postbuild": "rm -rf dist && npm run build && cd frontend && npm run build"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/JaiSureshS/NiyaCollections.git"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "cross-env NODE_ENV=production webpack serve --config webpack.prod.js",
+    "build": "cross-env NODE_ENV=production webpack --config webpack.prod.js",
+    "lint": "eslint 'src/**/*.js' || true",
+    "prettify": "prettier --write 'src/**/*.js'"
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "@aws-sdk/client-s3": "^3.209.0",
-    "@aws-sdk/s3-request-presigner": "^3.209.0",
-    "aws-sdk": "2.x",
-    "body-parser": "^1.18.3",
-    "copy-webpack-plugin": "^11.0.0",
-    "cors": "^2.8.5",
-    "dotenv": "^16.0.3",
-    "express": "^4.18.2",
-    "express-async-handler": "^1.2.0",
-    "foreman": "^3.0.1",
-    "form-data": "^4.0.0",
-    "jsonwebtoken": "^8.5.1",
-    "mongoose": "^6.7.1",
-    "multer": "^1.4.5-lts.1",
-    "multer-s3": "^3.0.1",
-    "sharp": "^0.31.2"
-  },
   "devDependencies": {
-    "@babel/cli": "^7.19.3",
     "@babel/core": "^7.20.2",
-    "@babel/node": "^7.20.0",
     "@babel/plugin-proposal-class-properties": "^7.18.6",
     "@babel/preset-env": "^7.20.2",
     "babel-loader": "^9.1.0",
     "cross-env": "^7.0.3",
     "css-loader": "^6.7.2",
-    "eslint": "^8.26.0",
-    "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-import": "^2.26.0",
     "file-loader": "^6.2.0",
-    "html-loader": "^4.2.0",
-    "html-webpack-plugin": "^5.5.0",
     "node-sass": "^8.0.0",
-    "nodemon": "^2.0.20",
     "postcss-loader": "^7.0.1",
     "postcss-preset-env": "^7.8.3",
     "sass-loader": "^13.2.0",
     "style-loader": "^3.3.1",
-    "webpack": "^5.75.0",
     "webpack-cli": "^4.10.0",
-    "webpack-dev-server": "^4.11.1"
+    "webpack-dev-server": "^4.11.1",
+    "webpack-node-externals": "^3.0.0"
   },
-  "engines": {
-    "node": "16.13.2",
-    "npm": "9.1.1"
+  "dependencies": {
+    "@babel/core": "^7.20.2",
+    "axios": "^1.1.3",
+    "babel-loader": "^9.1.0",
+    "clean-webpack-plugin": "^4.0.0",
+    "copy-webpack-plugin": "^11.0.0",
+    "css-minimizer-webpack-plugin": "^4.2.2",
+    "form-data": "^4.0.0",
+    "html-loader": "^4.2.0",
+    "html-webpack-plugin": "^5.5.0",
+    "mini-css-extract-plugin": "^2.6.1",
+    "webpack": "^5.75.0",
+    "webpack-merge": "^5.8.0"
   }
 }
