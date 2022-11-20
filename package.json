@@ -5,12 +5,12 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "NODE_ENV=production webpack serve --config webpack.prod.js",
-    "build": "cross-env NODE_ENV=production webpack --config webpack.prod.js",
+    "start": "webpack serve --config webpack.prod.js",
+    "build": "npm install --dev && npm install && cross-env NODE_ENV=production webpack --config webpack.prod.js",
+    "heroku-prebuild": "npm install dev",
+    "heroku-postbuild": "rm -rf dist && npm run build",
     "lint": "eslint 'src/**/*.js' || true",
-    "prettify": "prettier --write 'src/**/*.js'",
-    "heroku-prebuild": "npm install --dev",
-    "heroku-postbuild": "rm -rf dist && npm run build"
+    "prettify": "prettier --write 'src/**/*.js'"
   },
   "author": "",
   "license": "ISC",
