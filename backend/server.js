@@ -46,49 +46,8 @@ app.use(bodyParser.json());
 app.use('/api/uploads', uploadRouter);
 app.use('/api/users', userRouter);
 app.use('/api/products', productRouter);
-app.get('/api/paypal/clientId', (req, res) => {
-  res.send({ clientId: config.PAYPAL_CLIENT_ID });
-});
 app.use('/uploads', express.static(path.join(__dirname, '/../uploads')));
-// app.use(express.static(path.join(__dirname, '/../frontend')));
-
-
-/* app.get('/sign-s3', (req, res) => {
-  console.log("In sign-s3");
-  const s3 = new aws.S3();
-  // console.log(req);
-
-  const fileName = req.file.name;
-  console.log("fileName");
-  console.log(`filename: ${fileName}`);
-  // const fileType = req.query['file-type'];
-  const s3Params = {
-    Bucket: S3_BUCKET,
-    Key: fileName,
-    Expires: 60,
-    ContentType: 'jpg',
-    ACL: 'public-read'
-  };
-
-  // eslint-disable-next-line consistent-return
-  s3.getSignedUrl('putObject', s3Params, (err, data) => {
-    if(err){
-      console.log(err);
-      return res.end();
-    }
-    console.log(data);
-    const returnData = {
-      signedRequest: data,
-      url: `https://${S3_BUCKET}.s3.amazonaws.com/${fileName}`
-    };
-    console.log('{S3_BUCKET}:',`${S3_BUCKET}`)
-    console.log('returnData:',returnData);
-    res.write(JSON.stringify(returnData));
-    res.end();
-  });
-}); */
-
-app.use(express.static(path.join(__dirname,'/../frontend/dist'))); 
+// app.use(express.static(path.join(__dirname,'/../frontend/dist'))); 
 
 
 app.get('*', (req, res) => {
@@ -100,5 +59,5 @@ app.use((err, req, res, next) => {
   res.status(status).send({ message: err.message });
 });
 app.listen(config.PORT, () => {
-  console.log('serve at http://localhost:5003');
+  console.log(`serve at http://localhost:${config.PORT}`);
 });

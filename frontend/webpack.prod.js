@@ -12,8 +12,8 @@ module.exports = {
   devtool: 'source-map',
   entry: path.resolve(__dirname, 'src/index.js'),
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: '[name][contenthash].js',
+    path: path.resolve(__dirname, './dist'),
+    filename: '[name].js',
     clean: true,
   },
   
