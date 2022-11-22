@@ -92,7 +92,7 @@ header {
   padding: 0.5rem;
 }
 header a {
-  color: #ffffff;
+  color: #f11010;
   text-decoration: none;
   padding-right: 1rem;
 }
@@ -548,7 +548,7 @@ ul.categories {
   padding: 0.5rem;
   background: none;
   border: none;
-  color: #ec0d0d;
+  color: #ffffff;
   cursor: pointer;
 }
 /* review */
